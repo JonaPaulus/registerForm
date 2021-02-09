@@ -3,11 +3,20 @@
     <app-navigation-bar></app-navigation-bar>
   </div>
   <div id="content-wrapper">
-    <div class="area area-left">
-      <app-item-tiles></app-item-tiles>
+    <div id="introduction">
+      <h1>Image exchange bord - Registration required</h1>
+      <p>
+        To take avantage of this image exchange board you need to create an account first.<br/>
+        Afterwards you get access to our pool of <strong>1,235,843 images</strong> from <strong>45,232 users</strong> and are able to upload your own creations.
+      </p>
     </div>
-    <div class="area area-right">
-      <app-sign-up-form></app-sign-up-form>
+    <div id="area-wrapper">
+      <div class="area area-left">
+        <app-sign-up-form></app-sign-up-form>
+      </div>
+      <div class="area area-right">
+        <app-item-tiles></app-item-tiles>
+      </div>
     </div>
   </div>
   <div id="footer">

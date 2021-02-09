@@ -1,24 +1,74 @@
+@import '/src/variables.scss';
+
 #wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 #content-wrapper {
-    margin: 5rem auto 3rem;
+    margin: 4rem auto 3rem;
     width: 80%;
     flex: 1 0 auto;
 }
+
+#introduction {
+    h1, p {
+        text-align: center;
+        padding: 0 10px;
+    }
+}
+
 #footer {
     background-color: #354d4d;
     color: white;
+}
+
+#area-wrapper {
+    margin: auto;
+}
+
+#area-wrapper, #content-wrapper {
+    max-width: $max-pagewith;
 }
 
 .area {
     width: calc(50% -  1rem);
     display: inline-flex;
     background-color: white;
+    margin-top: 2rem;
+    max-width: 400px;
 }
 
 .area-right {
     margin-left: 2rem;
+}
+
+@media all and (max-width: 700px) {
+    #content-wrapper {
+        width: 90%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    #content-wrapper {
+        margin: 3rem auto 2rem;
+        width: calc(100% - 20px);
+    }
+    .area {
+        width: calc(50% -  .5rem);
+    }
+    .area-right {
+        margin-left: 1rem;
+    }
+}
+
+@media all and (max-width: 400px) {
+    .area {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .area-right {
+        margin: 0;
+    }
 }

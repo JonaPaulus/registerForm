@@ -1,0 +1,12 @@
+@import '/src/variables.scss';
+
+footer {
+    width: 80%;
+    max-width: $max-pagewith;
+    margin: auto;
+}
+
+#footer-wrapper {
+    background-color: #354d4d;
+    color: white; 
+}

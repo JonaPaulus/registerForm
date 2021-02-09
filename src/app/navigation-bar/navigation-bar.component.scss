@@ -1,5 +1,33 @@
+@import '/src/variables.scss';
+
 .top-bar {
     height: 70px;
     width: 100%;
     background-color: #fff;
+}
+
+nav {
+    width: 80%;
+    max-width: $max-pagewith;
+    margin: auto;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            line-height: 70px;
+        }
+    }
+}
+
+@media all and (max-width: 600px) {
+    .top-bar {
+        height: 50px;
+    }
+
+    nav > ul > li {
+        line-height: 50px;
+    }
 }
