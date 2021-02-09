@@ -30,3 +30,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Notes about the assessment
 
 I did not list and explain evey decision i made. Ask me if you want to know something specific.
+
+For bigger projects i prefer to structure components differently to group specific types of components and prevent a long list of just components in /app.

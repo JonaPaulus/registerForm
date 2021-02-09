@@ -1,0 +1,24 @@
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#content-wrapper {
+    margin: 5rem auto 3rem;
+    width: 80%;
+    flex: 1 0 auto;
+}
+#footer {
+    background-color: #354d4d;
+    color: white;
+}
+
+.area {
+    width: calc(50% -  1rem);
+    display: inline-flex;
+    background-color: white;
+}
+
+.area-right {
+    margin-left: 2rem;
+}
