@@ -33,4 +33,4 @@ I did not list and explain evey decision i made. Ask me if you want to know some
 
 For bigger projects i prefer to structure components differently to group specific types of components and prevent a long list of just components in /app.
 
-I created a responsive design and made up a fictional mimageboard as a purpose for the sign-up request. There is no login nor a protected area for logged in or registered users. Just the requested sign-up.
+I created a responsive design and made up a fictional imageboard as a purpose for the sign-up assessment. There is no login nor a protected area for logged in or registered users. Just the requested sign-up.

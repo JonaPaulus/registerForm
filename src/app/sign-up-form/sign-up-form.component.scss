@@ -1,0 +1,40 @@
+.mat-icon {
+    font-size: 2rem;
+    position: relative;
+    top: 8px;
+    right: 5px;
+}
+
+.mat-form-field .mat-icon {
+    display: none !important;
+}
+
+.mat-form-field.ng-touched.ng-invalid .mat-icon.red {
+    display: block !important;
+}
+
+.mat-form-field.ng-touched.ng-valid .mat-icon.green {
+    display: block !important;
+}
+
+button[type=button] {
+    width: 100%;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: #3edc54;
+    border: none;
+    margin-top: 20px;
+
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: #e0e0e0;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+
+    &:hover {
+        background-color: #20b635;
+    }
+}

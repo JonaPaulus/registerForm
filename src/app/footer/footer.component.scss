@@ -1,7 +1,7 @@
 @import '/src/variables.scss';
 
 footer {
-    width: 80%;
+    width: $pagewith;
     max-width: $max-pagewith;
     margin: auto;
 }
