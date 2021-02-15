@@ -26,6 +26,7 @@
 
 #area-wrapper {
     margin: auto;
+    display: flex;
 }
 
 #area-wrapper, #content-wrapper {
@@ -39,10 +40,16 @@
     margin-top: 2rem;
     max-width: 400px;
     padding: 25px;
+
+    &> * {
+        width: 100%;
+    }
 }
 
 .area-right {
     margin-left: 2rem;
+    vertical-align: top;
+    padding: 0;
 }
 
 @media all and (max-width: 700px) {
@@ -58,7 +65,6 @@
     }
     .area {
         width: calc(50% - .5rem - 30px);
-        padding: 15px;
     }
     .area-right {
         margin-left: 1rem;
@@ -66,11 +72,15 @@
 }
 
 @media all and (max-width: 400px) {
+    #area-wrapper {
+        display: block;
+    }
     .area {
-        width: calc(100% - 30px);
+        width: calc(100% - 50px);
         margin-bottom: 1rem;
     }
     .area-right {
         margin: 0;
+        width: 100%;
     }
 }
