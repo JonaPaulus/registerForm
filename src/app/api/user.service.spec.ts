@@ -25,18 +25,18 @@ describe('UserApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return 200 on success', 
+  it('should return 200 on success',
     waitForAsync(inject([HttpTestingController, UserApiService],
-    async (httpClient: HttpTestingController, service: UserApiService) => {
+    async (httpClient: HttpTestingController, userApiService: UserApiService) => {
     
       // preperation
       const postRegistration = {
-        "firstName":"jona",
-        "lastName":"pauw",
-        "email":"me@me.nl",
-        "pw1":"aaaaAAAA",
-        "pw2":"aaaa"
-      }
+        firstName: 'jona',
+        lastName: 'pauw',
+        email: 'me@me.nl',
+        pw1: 'aaaaAAAA',
+        pw2: 'aaaa'
+      };
 
       // execution
       fetchMock.mock('https://demo-api.now.sh/users', 200);
@@ -45,7 +45,7 @@ describe('UserApiService', () => {
       // checking results
       assert(res.ok);
 
-      //reset
+      // reset
       fetchMock.restore();
   })));
 

@@ -67,10 +67,10 @@ export class SignUpFormComponent implements OnInit {
     // validate the rest of the form just to make sure.
     this.registerForm.updateValueAndValidity();
 
-    //submit the form if valid
+    // submit the form if valid
     if (this.registerForm.valid) {
-      let formObj: any = this.registerForm.getRawValue();
-      let serializedForm: string = JSON.stringify(formObj);
+      const formObj: any = this.registerForm.getRawValue();
+      const serializedForm: string = JSON.stringify(formObj);
 
       this.userApiService.registerUser(serializedForm)
         .then((responseCode: number) => {
@@ -85,7 +85,7 @@ export class SignUpFormComponent implements OnInit {
           }
         });
     }
-  }  
+  }
 
   /**
    * Validates if the first and last name are not part of the password.
@@ -110,7 +110,7 @@ export class SignUpFormComponent implements OnInit {
       }
 
       return error;
-    }
+    };
   }
 
   /**
@@ -125,6 +125,6 @@ export class SignUpFormComponent implements OnInit {
       }
 
       return null;
-    }
+    };
   }
 }
