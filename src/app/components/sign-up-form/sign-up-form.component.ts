@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
+import { UserApiService } from '@api/user.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -8,17 +9,23 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, 
 })
 export class SignUpFormComponent implements OnInit {
 
+  public showRegistrationForm: boolean = true;
+  public showRegistrationSuccessMessage: boolean = false;
+  public showRegistrationFailureMessage: boolean = false;
+
   public registerForm: FormGroup = new FormGroup({
-    firstname: new FormControl('', [Validators.required]),
-    lastname: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     pw1: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z]).*'), this.noNameValidator()]),
     pw2: new FormControl('', [Validators.required, this.repeatPasswordValidator()]),
   });
 
-  ngOnInit(): void {
-    
-  }
+  constructor(
+    private userApiService: UserApiService
+  ) { }
+
+  ngOnInit(): void { }
 
   public getEmailErrorMessage(): string {
     if (this.registerForm.get('email')!.hasError('required')) {
@@ -28,7 +35,7 @@ export class SignUpFormComponent implements OnInit {
     return this.registerForm.get('email')!.hasError('email') ? 'This is not a valid e-mail address' : '';
   }
 
-  public getPwErrorMessage(): string {
+  public getPwErrorMessage(): string | null {
     if (this.registerForm.get('pw1')!.hasError('required')) {
       return 'Please choose a password. It must contain small and capital letters, must not contain your name and must be at least 8 characters long.';
     }
@@ -49,7 +56,7 @@ export class SignUpFormComponent implements OnInit {
       return 'The passwords do not match.';
     }
 
-    return 'hase';
+    return null;
   }
 
   public validateAndSumit() {
@@ -62,24 +69,41 @@ export class SignUpFormComponent implements OnInit {
 
     //submit the form if valid
     if (this.registerForm.valid) {
-      
+      let formObj: any = this.registerForm.getRawValue();
+      let serializedForm: string = JSON.stringify(formObj);
+      this.userApiService.registerUser(serializedForm)
+        .then((responseCode: number) => {
+          if (responseCode === 200) {
+            this.showRegistrationForm = false;
+            this.showRegistrationSuccessMessage = true;
+            this.showRegistrationFailureMessage = false;
+          } else {
+            this.showRegistrationForm = true;
+            this.showRegistrationSuccessMessage = false;
+            this.showRegistrationFailureMessage = true;
+          }
+        });
     }
   }  
 
+  /**
+   * Validates if the first and last name are not part of the password.
+   * Returns ValidatorError on match
+   */
   private noNameValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
 
       let error: ValidationErrors | null = null;
 
       if (this.registerForm) {
-        const firstname = this.registerForm.get('firstname')!.value;
-        const lastname = this.registerForm.get('lastname')!.value;
+        const firstName = this.registerForm.get('firstName')!.value;
+        const lastName = this.registerForm.get('lastName')!.value;
 
-        if (firstname && control.value.includes(firstname)) {
+        if (firstName && control.value.includes(firstName)) {
           error = { noName: true };
         }
 
-        if (lastname && control.value.includes(lastname)) {
+        if (lastName && control.value.includes(lastName)) {
           error = { noName: true };
         }
       }
@@ -88,12 +112,14 @@ export class SignUpFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Validates if the value of the repeat password field is identical to the input of the password field
+   * Returns ValidatorError if not
+   */
   private repeatPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
 
       if (this.registerForm) {
-        const pw = this.registerForm.get('pw1')!.value;
-
         return (this.registerForm.get('pw1')!.value !== control.value) ? { noPwMatch: true } : null;
       }
 

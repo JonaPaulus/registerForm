@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { FooterComponent } from './footer/footer.component';
-import { ItemTilesComponent } from './item-tiles/item-tiles.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+/* components */
+import { AppComponent } from './app.component';
+import { SignUpFormComponent } from '@components/sign-up-form/sign-up-form.component';
+import { NavigationBarComponent } from '@components/navigation-bar/navigation-bar.component';
+import { FooterComponent } from '@components/footer/footer.component';
+import { ItemTilesComponent } from '@components/item-tiles/item-tiles.component';
+
+/* Services */
+import { UserApiService } from '@api/user.service';
 
 /* Material Design */
 import { MatIconModule } from '@angular/material/icon';
@@ -34,7 +38,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [UserApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

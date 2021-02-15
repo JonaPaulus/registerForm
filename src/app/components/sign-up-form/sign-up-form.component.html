@@ -1,20 +1,32 @@
 <h2 class="center">Register here</h2>
 
-<form [formGroup]="registerForm">
+<div id="registrationSuccess" [hidden]="!showRegistrationSuccessMessage">
+    <p class="green center">
+        <strong>Your registration has been successful</strong>
+    </p>
+</div>
+
+<div id="registrationFailure" [hidden]="!showRegistrationFailureMessage">
+    <p class="red center">
+        <strong>Your registration has been failed. Please try again.</strong>
+    </p>
+</div>
+
+<form id="registerForm" [formGroup]="registerForm" [hidden]="!showRegistrationForm">
     <mat-form-field appearance="standard" class="wp-100">
         <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstname" required>
+        <input matInput formControlName="firstName" required>
         <mat-icon matSuffix class="green">check_circle_outline</mat-icon>
         <mat-icon matSuffix class="red">error_outline</mat-icon>
-        <mat-error *ngIf="!registerForm.get('firstname')!.value">Please enter your first name</mat-error>
+        <mat-error *ngIf="!registerForm.get('firstName')!.value">Please enter your first name</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="wp-100">
         <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastname" required>
+        <input matInput formControlName="lastName" required>
         <mat-icon matSuffix class="green">check_circle_outline</mat-icon>
         <mat-icon matSuffix class="red">error_outline</mat-icon>
-        <mat-error *ngIf="!registerForm.get('lastname')!.value">Please enter your family name</mat-error>
+        <mat-error *ngIf="!registerForm.get('lastName')!.value">Please enter your family name</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" class="wp-100">
@@ -42,4 +54,10 @@
     </mat-form-field>
 </form>
 
-<button id='submit' type="button" (click)="validateAndSumit()" [disabled]="!this.registerForm.valid">Submit</button> 
+<button id='submit' 
+        type="button" 
+        (click)="validateAndSumit()" 
+        [disabled]="!this.registerForm.valid"
+        [hidden]="!showRegistrationForm">
+            Submit
+</button> 
