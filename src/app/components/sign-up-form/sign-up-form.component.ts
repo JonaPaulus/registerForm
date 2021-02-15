@@ -59,7 +59,7 @@ export class SignUpFormComponent implements OnInit {
     return null;
   }
 
-  public validateAndSumit() {
+  public validateAndSumit(): void {
     // as it might be possible to change the name after the validation of the password
     // has happened, revalidate that specific field on submit.
     this.registerForm.get('pw1')?.updateValueAndValidity();
@@ -71,6 +71,7 @@ export class SignUpFormComponent implements OnInit {
     if (this.registerForm.valid) {
       let formObj: any = this.registerForm.getRawValue();
       let serializedForm: string = JSON.stringify(formObj);
+
       this.userApiService.registerUser(serializedForm)
         .then((responseCode: number) => {
           if (responseCode === 200) {
@@ -96,14 +97,14 @@ export class SignUpFormComponent implements OnInit {
       let error: ValidationErrors | null = null;
 
       if (this.registerForm) {
-        const firstName = this.registerForm.get('firstName')!.value;
-        const lastName = this.registerForm.get('lastName')!.value;
+        const firstName: string = this.registerForm.get('firstName')!.value;
+        const lastName: string = this.registerForm.get('lastName')!.value;
 
-        if (firstName && control.value.includes(firstName)) {
+        if (firstName && control.value.toLowerCase().includes(firstName.toLowerCase())) {
           error = { noName: true };
         }
 
-        if (lastName && control.value.includes(lastName)) {
+        if (lastName && control.value.toLowerCase().includes(lastName.toLowerCase())) {
           error = { noName: true };
         }
       }
